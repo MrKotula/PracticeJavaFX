@@ -1,16 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.practice.projectitproger.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #343434;" stylesheets="@Styles/Styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.practice.projectitproger.RegController">
+   <children>
+      <Label layoutX="70.0" layoutY="42.0" prefHeight="33.0" prefWidth="173.0" text="Registration" textFill="WHITE">
+         <font>
+            <Font name="Garamond Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="359.0" layoutY="42.0" prefHeight="33.0" prefWidth="173.0" text="Authorization" textFill="WHITE">
+         <font>
+            <Font name="Garamond Bold" size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="reg_login" focusTraversable="false" layoutX="39.0" layoutY="90.0" prefHeight="43.0" prefWidth="204.0" promptText="enter your login" styleClass="text-input" stylesheets="@Styles/Styles.css">
+         <font>
+            <Font name="Garamond" size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="reg_email" focusTraversable="false" layoutX="39.0" layoutY="157.0" prefHeight="43.0" prefWidth="204.0" promptText="enter your email" styleClass="text-input" stylesheets="@Styles/Styles.css">
+         <font>
+            <Font name="Garamond" size="15.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="reg_password" focusTraversable="false" layoutX="39.0" layoutY="224.0" prefHeight="33.0" prefWidth="204.0" promptText="enter your password" stylesheets="@Styles/Styles.css">
+         <font>
+            <Font name="Garamond" size="15.0" />
+         </font>
+      </PasswordField>
+      <CheckBox fx:id="reg_checkBox" focusTraversable="false" layoutX="39.0" layoutY="282.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="173.0" stylesheets="@Styles/Styles.css" textFill="#f5f4f4">
+         <font>
+            <Font name="Garamond" size="14.0" />
+         </font>
+         <graphic>
+            <Hyperlink fx:id="reg_terms" focusTraversable="false" styleClass="link" stylesheets="@Styles/Styles.css" text="Terms of use" textFill="WHITE" underline="true" wrapText="true">
+               <font>
+                  <Font name="Garamond Bold" size="15.0" />
+               </font>
+            </Hyperlink>
+         </graphic>
+      </CheckBox>
+      <Button fx:id="toRegister" focusTraversable="false" layoutX="47.0" layoutY="320.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="187.0" stylesheets="@Styles/Styles.css" text="to register">
+         <font>
+            <Font name="Garamond" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField fx:id="auth_log" focusTraversable="false" layoutX="328.0" layoutY="90.0" prefHeight="43.0" prefWidth="204.0" promptText="enter your login" styleClass="text-input" stylesheets="@Styles/Styles.css">
+         <font>
+            <Font name="Garamond" size="15.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="auth_password" focusTraversable="false" layoutX="328.0" layoutY="159.0" prefHeight="40.0" prefWidth="204.0" promptText="enter your password" stylesheets="@Styles/Styles.css">
+         <font>
+            <Font name="Garamond" size="15.0" />
+         </font>
+      </PasswordField>
+      <Button fx:id="logInto" focusTraversable="false" layoutX="337.0" layoutY="225.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="187.0" stylesheets="@Styles/Styles.css" text="log into">
+         <font>
+            <Font name="Garamond" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
