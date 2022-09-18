@@ -7,4 +7,6 @@ module com.practice.projectitproger {
 
     opens com.practice.projectitproger to javafx.fxml;
     exports com.practice.projectitproger;
+    exports com.practice.projectitproger.Controllers;
+    opens com.practice.projectitproger.Controllers to javafx.fxml;
 }
