@@ -31,7 +31,7 @@ public class ArticlesController {
     private URL location;
 
     @FXML
-    private Button log_out;
+    private Button log_out, add_article;
 
     @FXML
     private VBox vBox;
@@ -42,31 +42,40 @@ public class ArticlesController {
         DB db = new DB();
         ResultSet resultSet = db.getArticles();
 
-    while(resultSet.next()){
-       Node node = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("article.fxml")));
+        while (resultSet.next()) {
+            Node node = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("article.fxml")));
 
-       Label title = (Label) node.lookup("#title");
-       title.setText(resultSet.getString("title"));
+            Label title = (Label) node.lookup("#title");
+            title.setText(resultSet.getString("title"));
 
-       Label intro = (Label) node.lookup("#intro");
-       intro.setText(resultSet.getString("intro"));
+            Label intro = (Label) node.lookup("#intro");
+            intro.setText(resultSet.getString("intro"));
 
-       node.setOnMouseEntered(event ->{
-               node.setStyle("-fx-background-color: #707173");
-       });
-       node.setOnMouseExited(event ->{
-               node.setStyle("-fx-background-color: #343434");
-        });
+            node.setOnMouseEntered(event -> {
+                node.setStyle("-fx-background-color: #707173");
+            });
+            node.setOnMouseExited(event -> {
+                node.setStyle("-fx-background-color: #343434");
+            });
 
 
-       vBox.getChildren().add(node);
-       vBox.setSpacing(15);
-    }
+            vBox.getChildren().add(node);
+            vBox.setSpacing(15);
+        }
 
-        log_out.setOnAction( event ->
+        log_out.setOnAction(event ->
         {
             try {
                 exit(event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        add_article.setOnAction(event -> {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            try {
+                HelloApplication.setScene("add_article.fxml", stage);
             } catch (IOException e) {
                 e.printStackTrace();
             }

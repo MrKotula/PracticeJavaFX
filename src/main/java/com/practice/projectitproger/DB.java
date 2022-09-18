@@ -72,4 +72,12 @@ public class DB {
         return null;
     }
 
+    public void addArticle(String title, String anons, String full_text) throws SQLException, ClassNotFoundException {
+        String str = "INSERT INTO `articles` (`title`, `intro`, `text`) VALUES (?, ?, ?)";
+        PreparedStatement pdSt = getDbConnection().prepareStatement(str);
+        pdSt.setString(1, title);
+        pdSt.setString(2, anons);
+        pdSt.setString(3, full_text);
+        pdSt.executeUpdate();
+    }
 }
