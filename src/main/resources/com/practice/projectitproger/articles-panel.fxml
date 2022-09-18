@@ -8,12 +8,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #343434;" stylesheets="@Styles/Styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.practice.projectitproger.Controllers.ArticlesController">
     <children>
-        <Label layoutX="70.0" layoutY="42.0" prefHeight="33.0" prefWidth="173.0" text="N" textFill="WHITE">
+        <Label layoutX="179.0" layoutY="36.0" prefHeight="51.0" prefWidth="317.0" text="News from site" textFill="WHITE">
             <font>
-                <Font name="Garamond Bold" size="25.0" />
+                <Font name="Garamond Bold" size="32.0" />
             </font>
         </Label>
-        <Button fx:id="logInto" focusTraversable="false" layoutX="337.0" layoutY="225.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="187.0" stylesheets="@Styles/Styles.css" text="log into">
+        <Button fx:id="log_out" focusTraversable="false" layoutX="422.0" layoutY="36.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="148.0" stylesheets="@Styles/Styles.css" text="log out">
             <font>
                 <Font name="Garamond" size="15.0" />
             </font>

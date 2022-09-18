@@ -1,5 +1,8 @@
 package com.practice.projectitproger.Controllers;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.math.BigInteger;
 import java.net.URL;
 import java.security.MessageDigest;
@@ -8,12 +11,19 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import com.practice.projectitproger.DB;
+import com.practice.projectitproger.HelloApplication;
+import com.practice.projectitproger.Models.User;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class RegController {
 
@@ -58,7 +68,13 @@ public class RegController {
         toRegister.setOnAction(event ->
                 registrationUser());
         logInto.setOnAction(event ->
-                authUser());
+        {
+            try {
+                authUser(event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 
@@ -115,7 +131,7 @@ public class RegController {
         return m5dHex;
     }
 
-    private void authUser() {
+    private void authUser(ActionEvent event) throws IOException {
         String login = auth_log.getCharacters().toString();
         String password = auth_password.getCharacters().toString();
 
@@ -132,6 +148,14 @@ public class RegController {
             auth_log.setText("");
             auth_password.setText("");
             logInto.setText("All right! :)");
+
+            FileOutputStream fos = new FileOutputStream("user.settings");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(new User(login));
+            oos.close();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            HelloApplication.setScene("articles-panel.fxml", stage);
         }
     }
 }
