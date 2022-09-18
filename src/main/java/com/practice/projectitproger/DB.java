@@ -59,4 +59,17 @@ public class DB {
         }
         return false;
     }
+
+    public ResultSet getArticles(){
+        String sql = "SELECT `title`, `intro` FROM `articles`";
+        Statement statement = null;
+        try {
+            statement = getDbConnection().createStatement();
+            return statement.executeQuery(sql);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
