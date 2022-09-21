@@ -12,39 +12,39 @@ public class DB {
 
     private Connection dbConn = null;
 
-        private Connection getDbConnection() throws ClassNotFoundException, SQLException {
-            String str = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DB_NAME;
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            dbConn = DriverManager.getConnection(str, LOGIN, PASS);
-            return dbConn;
-        }
-
-        public void isConnected() throws ClassNotFoundException, SQLException {
-        dbConn = getDbConnection();
-            System.out.println(dbConn.isValid(1000));
+    private Connection getDbConnection() throws ClassNotFoundException, SQLException {
+        String str = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DB_NAME;
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        dbConn = DriverManager.getConnection(str, LOGIN, PASS);
+        return dbConn;
     }
 
-        public void regUser(String login, String email, String password) throws ClassNotFoundException, SQLException{
-            String str = "INSERT INTO `users` (`login`, `email`, `password`) VALUES (?, ?, ?)";
-            PreparedStatement pdSt = getDbConnection().prepareStatement(str);
-            pdSt.setString(1, login);
-            pdSt.setString(2, email);
-            pdSt.setString(3, password);
-            pdSt.executeUpdate();
-        }
+    public void isConnected() throws ClassNotFoundException, SQLException {
+        dbConn = getDbConnection();
+        System.out.println(dbConn.isValid(1000));
+    }
 
-        public boolean isExistUser(String login){
-            String sql = "SELECT `id` FROM `users` WHERE `login` = ?";
-            try {
-               PreparedStatement prSt = getDbConnection().prepareStatement(sql);
-                prSt.setString(1, login);
-                ResultSet res = prSt.executeQuery();
-                return res.next();
-            } catch (SQLException | RuntimeException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        return false;
+    public void regUser(String login, String email, String password) throws ClassNotFoundException, SQLException {
+        String str = "INSERT INTO `users` (`login`, `email`, `password`) VALUES (?, ?, ?)";
+        PreparedStatement pdSt = getDbConnection().prepareStatement(str);
+        pdSt.setString(1, login);
+        pdSt.setString(2, email);
+        pdSt.setString(3, password);
+        pdSt.executeUpdate();
+    }
+
+    public boolean isExistUser(String login) {
+        String sql = "SELECT `id` FROM `users` WHERE `login` = ?";
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(sql);
+            prSt.setString(1, login);
+            ResultSet res = prSt.executeQuery();
+            return res.next();
+        } catch (SQLException | RuntimeException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
+        return false;
+    }
 
     public boolean authUser(String login, String password) {
         String sql = "SELECT `id` FROM `users` WHERE `login` = ? AND `password` = ?";
@@ -60,8 +60,8 @@ public class DB {
         return false;
     }
 
-    public ResultSet getArticles(){
-        String sql = "SELECT `title`, `intro` FROM `articles`";
+    public ResultSet getArticles() {
+        String sql = "SELECT `id`, `title`, `intro` FROM `articles`";
         Statement statement = null;
         try {
             statement = getDbConnection().createStatement();
@@ -80,4 +80,13 @@ public class DB {
         pdSt.setString(3, full_text);
         pdSt.executeUpdate();
     }
+
+    public ResultSet getArticle(int id) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT `title`, `text` FROM `articles` WHERE id = ?";
+        PreparedStatement prSt = getDbConnection().prepareStatement(sql);
+            prSt.setInt(1, id);
+            return prSt.executeQuery();
+
+    }
+
 }

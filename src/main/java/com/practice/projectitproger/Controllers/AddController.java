@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import com.practice.projectitproger.DB;
 import com.practice.projectitproger.HelloApplication;
 import javafx.event.ActionEvent;
